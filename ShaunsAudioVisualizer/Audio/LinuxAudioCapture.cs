@@ -166,11 +166,10 @@ public sealed class LinuxAudioCapture : IAudioCaptureSource
                     "No Linux capture tool found. Install 'pw-cat' (PipeWire) or 'parec' (PulseAudio).");
             }
 
-            var monitorDevice = ResolveMonitorDevice();
-
             var toolArguments = new List<string>();
             if (executable.EndsWith("parec", StringComparison.Ordinal))
             {
+                var monitorDevice = ResolveMonitorDevice();
                 toolArguments.Add("--rate=48000");
                 toolArguments.Add("--channels=2");
                 toolArguments.Add("--format=s16le");
@@ -181,18 +180,21 @@ public sealed class LinuxAudioCapture : IAudioCaptureSource
             }
             else
             {
+                var sink = ResolveSink();
                 toolArguments.Add("--record");
                 toolArguments.Add("--raw");
+                toolArguments.Add("--properties");
+                toolArguments.Add("stream.capture.sink=true");
                 toolArguments.Add("--format");
                 toolArguments.Add("s16");
                 toolArguments.Add("--rate");
                 toolArguments.Add("48000");
                 toolArguments.Add("--channels");
                 toolArguments.Add("2");
-                if (!string.IsNullOrEmpty(monitorDevice))
+                if (!string.IsNullOrEmpty(sink))
                 {
                     toolArguments.Add("--target");
-                    toolArguments.Add(monitorDevice);
+                    toolArguments.Add(sink);
                 }
                 toolArguments.Add("-");
             }
@@ -324,6 +326,81 @@ public sealed class LinuxAudioCapture : IAudioCaptureSource
 
             cancellation.Dispose();
         }
+    }
+
+    public static string? ResolveSink()
+    {
+        try
+        {
+            var pactl = FindOnPath("pactl");
+            if (pactl is not null)
+            {
+                var info = new ProcessStartInfo
+                {
+                    FileName = pactl,
+                    Arguments = "get-default-sink",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                };
+
+                using var process = Process.Start(info);
+                if (process is not null)
+                {
+                    var output = process.StandardOutput.ReadToEnd().Trim();
+                    process.WaitForExit(2000);
+                    if (!string.IsNullOrWhiteSpace(output))
+                    {
+                        return output;
+                    }
+                }
+            }
+
+            var wpctl = FindOnPath("wpctl");
+            if (wpctl is not null)
+            {
+                var info = new ProcessStartInfo
+                {
+                    FileName = wpctl,
+                    Arguments = "inspect @DEFAULT_AUDIO_SINK@",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                };
+
+                using var process = Process.Start(info);
+                if (process is not null)
+                {
+                    var output = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit(2000);
+
+                    foreach (var line in output.Split('\n'))
+                    {
+                        var trimmed = line.Trim();
+                        if (trimmed.Contains("node.name", StringComparison.Ordinal))
+                        {
+                            var equals = trimmed.IndexOf('=');
+                            if (equals >= 0 && equals + 1 < trimmed.Length)
+                            {
+                                var value = trimmed[(equals + 1)..].Trim().Trim('"');
+                                if (!string.IsNullOrWhiteSpace(value))
+                                {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch
+        {
+            // Best-effort.
+        }
+
+        return null;
     }
 
     public static string? ResolveMonitorDevice()
