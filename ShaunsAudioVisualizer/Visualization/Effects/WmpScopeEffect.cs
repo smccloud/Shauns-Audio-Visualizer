@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class WmpScopeEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "WMP98 scope";
 
     private readonly List<float> _samples = new();

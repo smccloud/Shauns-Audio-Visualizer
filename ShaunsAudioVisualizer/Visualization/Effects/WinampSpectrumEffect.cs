@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class WinampSpectrumEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Winamp spectrum";
 
     private float[] _displayed = Array.Empty<float>();

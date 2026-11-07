@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class OscilloscopeTrailEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Oscilloscope trail";
 
     private readonly List<float> _history = new();

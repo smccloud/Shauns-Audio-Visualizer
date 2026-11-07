@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class ParticleFountainEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Particle fountain";
 
     private sealed class Particle

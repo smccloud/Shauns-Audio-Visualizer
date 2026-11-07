@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class StarfieldEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Starfield / tunnel";
 
     private sealed class Star

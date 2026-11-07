@@ -4,6 +4,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class WmpParticlesEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "WMP98 particles";
 
     private sealed class Particle

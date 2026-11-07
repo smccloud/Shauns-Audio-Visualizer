@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class MilkdropStyleEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Milkdrop-style";
 
     private float[] _bands = Array.Empty<float>();

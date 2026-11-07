@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class LissajousEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Lissajous / phase scope";
 
     private PointF[] _points = Array.Empty<PointF>();

@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class VUMeterEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Stereo VU meters";
 
     private float _leftLevel;

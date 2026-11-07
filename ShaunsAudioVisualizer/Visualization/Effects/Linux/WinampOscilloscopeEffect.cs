@@ -4,6 +4,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class WinampOscilloscopeEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Winamp oscilloscope";
 
     private readonly List<float> _samples = new();

@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class MirroredSpectrumBarsEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Mirrored spectrum bars";
 
     private float[] _left = Array.Empty<float>();

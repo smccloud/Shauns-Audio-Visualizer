@@ -13,6 +13,9 @@ public interface IVisualizationEffect
     /// <summary>Resets any internal state.</summary>
     void Reset();
 
+    /// <summary>Index of the color palette currently used by the effect.</summary>
+    int PaletteIndex { get; set; }
+
     /// <summary>Advances the effect using the latest audio frame.</summary>
     void Update(VisualizationFrame frame);
 

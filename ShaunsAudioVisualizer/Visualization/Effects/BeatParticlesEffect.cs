@@ -4,6 +4,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class BeatParticlesEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Beat particles";
 
     private readonly List<Particle> _particles = new();

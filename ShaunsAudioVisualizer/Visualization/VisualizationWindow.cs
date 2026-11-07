@@ -193,18 +193,24 @@ public sealed class VisualizationWindow : Form
         switch (e.KeyCode)
         {
             case Keys.Right:
-            case Keys.Down:
                 _effectIndex = (_effectIndex + 1) % _effects.Count;
                 _effects[_effectIndex].Reset();
                 Text = $"Audio Visualizer - {_effects[_effectIndex].Name}";
                 SaveLastEffectIndex();
                 break;
             case Keys.Left:
-            case Keys.Up:
                 _effectIndex = (_effectIndex - 1 + _effects.Count) % _effects.Count;
                 _effects[_effectIndex].Reset();
                 Text = $"Audio Visualizer - {_effects[_effectIndex].Name}";
                 SaveLastEffectIndex();
+                break;
+            case Keys.Up:
+                _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 1) % 5;
+                Text = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
+                break;
+            case Keys.Down:
+                _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 4) % 5;
+                Text = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
                 break;
             case Keys.F11:
                 ToggleFullScreen();

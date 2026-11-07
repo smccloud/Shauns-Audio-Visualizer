@@ -101,17 +101,27 @@ public sealed class LinuxVisualizerWindow : Window
 
         KeyDown += (_, e) =>
         {
-            if (e.Key == Key.Right || e.Key == Key.Down)
+            if (e.Key == Key.Right)
             {
                 _effectIndex = (_effectIndex + 1) % _effects.Count;
                 _effects[_effectIndex].Reset();
                 Title = $"Audio Visualizer - {_effects[_effectIndex].Name}";
             }
-            else if (e.Key == Key.Left || e.Key == Key.Up)
+            else if (e.Key == Key.Left)
             {
                 _effectIndex = (_effectIndex + _effects.Count - 1) % _effects.Count;
                 _effects[_effectIndex].Reset();
                 Title = $"Audio Visualizer - {_effects[_effectIndex].Name}";
+            }
+            else if (e.Key == Key.Up)
+            {
+                _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 1) % 5;
+                Title = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
+            }
+            else if (e.Key == Key.Down)
+            {
+                _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 4) % 5;
+                Title = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
             }
         };
 

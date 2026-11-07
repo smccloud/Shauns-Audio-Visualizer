@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class WmpBarsEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "WMP98 bars";
 
     private float[] _displayed = Array.Empty<float>();

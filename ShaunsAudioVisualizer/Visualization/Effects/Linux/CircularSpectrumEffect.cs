@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class CircularSpectrumEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Circular spectrum";
 
     private float[] _left = Array.Empty<float>();

@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class ConsoleStyleBarsEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Console-style bars";
 
     private float[] _leftDisplayed = Array.Empty<float>();

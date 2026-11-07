@@ -5,6 +5,7 @@ namespace ShaunsAudioVisualizer.Visualization.Effects;
 
 public sealed class PulsingShapesEffect : IVisualizationEffect
 {
+    public int PaletteIndex { get; set; }
     public string Name => "Pulsing shapes";
 
     private float _energy;
