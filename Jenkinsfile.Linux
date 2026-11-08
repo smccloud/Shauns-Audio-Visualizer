@@ -96,7 +96,7 @@ pipeline {
                         chmod +x appimagetool
                     fi
                     export PATH="$PWD:$PATH"
-                    packaging/appimage/build-appimage.sh
+                    bash packaging/appimage/build-appimage.sh
                     ls dist
                 '''
             }
