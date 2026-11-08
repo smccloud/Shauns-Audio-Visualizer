@@ -85,16 +85,21 @@ pipeline {
 
         stage('Publish (linux-x64)') {
             steps {
-                sh 'rm -rf publish'
+                sh 'rm -rf publish dist'
                 sh "dotnet publish ShaunsAudioVisualizer/ShaunsAudioVisualizer.csproj --configuration ${CONFIGURATION} --framework net10.0 --runtime linux-x64 --self-contained false /p:PublishSingleFile=true --output publish"
                 sh 'ls publish'
+
+                // Build the AppImage (requires appimagetool on PATH).
+                sh 'if ! command -v appimagetool >/dev/null 2>&1; then wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool && chmod +x appimagetool && export PATH="$PWD:$PATH"; fi'
+                sh 'export PATH="$PWD:$PATH"; packaging/appimage/build-appimage.sh'
+                sh 'ls dist'
             }
         }
     }
 
     post {
         success {
-            archiveArtifacts artifacts: 'publish/**', fingerprint: true
+            archiveArtifacts artifacts: 'publish/**,dist/**', fingerprint: true
         }
         always {
             echo "Build ${env.BUILD_NUMBER} finished: ${currentBuild.currentResult}"
