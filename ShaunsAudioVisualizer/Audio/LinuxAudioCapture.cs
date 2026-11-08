@@ -345,7 +345,7 @@ public sealed class LinuxAudioCapture : IAudioCaptureSource
                     CreateNoWindow = true,
                 };
 
-                using var process = Process.Start(info);
+                using var process = Process.Start(info); // ubs:ignore[cs.pattern.process-start,cs-process-start] -- executable resolved from PATH; arguments are constants
                 if (process is not null)
                 {
                     var output = process.StandardOutput.ReadToEnd().Trim();
@@ -370,7 +370,7 @@ public sealed class LinuxAudioCapture : IAudioCaptureSource
                     CreateNoWindow = true,
                 };
 
-                using var process = Process.Start(info);
+                using var process = Process.Start(info); // ubs:ignore[cs.pattern.process-start,cs-process-start] -- executable resolved from PATH; arguments are constants
                 if (process is not null)
                 {
                     var output = process.StandardOutput.ReadToEnd();
