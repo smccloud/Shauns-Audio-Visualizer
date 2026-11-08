@@ -90,9 +90,15 @@ pipeline {
                 sh 'ls publish'
 
                 // Build the AppImage (requires appimagetool on PATH).
-                sh 'if ! command -v appimagetool >/dev/null 2>&1; then wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool && chmod +x appimagetool && export PATH="$PWD:$PATH"; fi'
-                sh 'export PATH="$PWD:$PATH"; packaging/appimage/build-appimage.sh'
-                sh 'ls dist'
+                sh '''
+                    if ! command -v appimagetool >/dev/null 2>&1; then
+                        wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+                        chmod +x appimagetool
+                    fi
+                    export PATH="$PWD:$PATH"
+                    packaging/appimage/build-appimage.sh
+                    ls dist
+                '''
             }
         }
     }
