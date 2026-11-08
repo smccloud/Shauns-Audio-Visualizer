@@ -101,6 +101,8 @@ public sealed class LinuxVisualizerWindow : Window
             new WmpXpAmbientEffect(),
             new WmpXpBarsEffect(),
             new WmpXpScopeEffect(),
+            new RetroSpectrumEffect(),
+            new RetroScopeEffect(),
             new WinampSpectrumEffect(),
             new WinampOscilloscopeEffect(),
         };

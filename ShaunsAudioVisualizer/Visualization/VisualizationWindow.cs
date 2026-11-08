@@ -71,6 +71,8 @@ public sealed class VisualizationWindow : Form
             new WmpXpAmbientEffect(),
             new WmpXpBarsEffect(),
             new WmpXpScopeEffect(),
+            new RetroSpectrumEffect(),
+            new RetroScopeEffect(),
             new WinampSpectrumEffect(),
             new WinampOscilloscopeEffect(),
         };
