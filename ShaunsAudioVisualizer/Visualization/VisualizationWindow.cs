@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using ShaunsAudioVisualizer.Audio;
 using ShaunsAudioVisualizer.Audio.Analysis;
@@ -205,7 +206,47 @@ public sealed class VisualizationWindow : Form
 
     private void OnPaint(object? sender, PaintEventArgs e)
     {
-        _effects[_effectIndex].Render(e.Graphics, ClientRectangle);
+        var bounds = ClientRectangle;
+        if (bounds.Width <= 0 || bounds.Height <= 0)
+        {
+            return;
+        }
+
+        using var bitmap = new Bitmap(bounds.Width, bounds.Height);
+        using (var g = Graphics.FromImage(bitmap))
+        {
+            _effects[_effectIndex].Render(g, new Rectangle(0, 0, bounds.Width, bounds.Height));
+        }
+
+        var palette = _effects[_effectIndex].PaletteIndex;
+        using var attributes = new ImageAttributes();
+        attributes.SetColorMatrix(BuildPaletteMatrix(palette));
+
+        e.Graphics.DrawImage(
+            bitmap,
+            bounds,
+            0, 0, bounds.Width, bounds.Height,
+            GraphicsUnit.Pixel,
+            attributes);
+    }
+
+    private static ColorMatrix BuildPaletteMatrix(int paletteIndex)
+    {
+        // Hue-rotate the rendered frame so the Up/Down palette choice is
+        // reflected in every effect without per-effect color logic.
+        var angle = paletteIndex * 72f * (float)(Math.PI / 180.0);
+        var cos = (float)Math.Cos(angle);
+        var sin = (float)Math.Sin(angle);
+
+        // Standard hue-rotation matrix.
+        return new ColorMatrix(new[]
+        {
+            new[] { 0.213f + 0.787f * cos - 0.213f * sin, 0.715f - 0.715f * cos - 0.715f * sin, 0.072f - 0.072f * cos + 0.928f * sin, 0f, 0f },
+            new[] { 0.213f - 0.213f * cos + 0.213f * sin, 0.715f + 0.285f * cos + 0.715f * sin, 0.072f - 0.072f * cos - 0.928f * sin, 0f, 0f },
+            new[] { 0.213f - 0.213f * cos - 0.787f * sin, 0.715f - 0.715f * cos + 0.285f * sin, 0.072f + 0.928f * cos + 0.072f * sin, 0f, 0f },
+            new[] { 0f, 0f, 0f, 1f, 0f },
+            new[] { 0f, 0f, 0f, 0f, 1f },
+        });
     }
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
@@ -233,11 +274,11 @@ public sealed class VisualizationWindow : Form
                 break;
             case Keys.Up:
                 _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 1) % 5;
-                Text = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
+                Text = $"Shaun's Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
                 break;
             case Keys.Down:
                 _effects[_effectIndex].PaletteIndex = (_effects[_effectIndex].PaletteIndex + 4) % 5;
-                Text = $"Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
+                Text = $"Shaun's Audio Visualizer - {_effects[_effectIndex].Name} (Palette {_effects[_effectIndex].PaletteIndex})";
                 break;
             case Keys.F11:
                 ToggleFullScreen();
