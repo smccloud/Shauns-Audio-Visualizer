@@ -77,6 +77,18 @@ public sealed class VisualizationWindow : Form
             new Y2kScopeEffect(),
             new WinampSpectrumEffect(),
             new WinampOscilloscopeEffect(),
+            new RadialFilamentBurstEffect(),
+            new CrimsonVortexLightningEffect(),
+            new NeonMarbleFluidEffect(),
+            new PurpleRippleWavesEffect(),
+            new LimeGreenFunnelEffect(),
+            new NeonGreenRingsEffect(),
+            new CoralSeafoamSmokeEffect(),
+            new VioletCyanPlanesEffect(),
+            new PinkVioletStarburstEffect(),
+            new CyanTealRipplesEffect(),
+            new MagentaSkyBlueRibbonsEffect(),
+            new GoldenOrangePlasmaRingEffect(),
         };
 
         _effectIndex = LoadLastEffectIndex();
