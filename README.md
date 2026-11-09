@@ -87,6 +87,30 @@ The built-in effects (switch with the arrow keys):
 |---|---|
 | ![Winamp spectrum](screenshots/effect_WinampSpectrum.png?v=2) | ![Winamp oscilloscope](screenshots/effect_WinampOscilloscope.png?v=2) |
 
+| Radial filament burst | Crimson vortex lightning |
+|---|---|
+| ![Radial filament burst](screenshots/effect_RadialFilamentBurst.png?v=2) | ![Crimson vortex lightning](screenshots/effect_CrimsonVortexLightning.png?v=2) |
+
+| Neon marble fluid | Purple ripple waves |
+|---|---|
+| ![Neon marble fluid](screenshots/effect_NeonMarbleFluid.png?v=2) | ![Purple ripple waves](screenshots/effect_PurpleRippleWaves.png?v=2) |
+
+| Lime green funnel | Neon green rings |
+|---|---|
+| ![Lime green funnel](screenshots/effect_LimeGreenFunnel.png?v=2) | ![Neon green rings](screenshots/effect_NeonGreenRings.png?v=2) |
+
+| Coral seafoam smoke | Violet cyan planes |
+|---|---|
+| ![Coral seafoam smoke](screenshots/effect_CoralSeafoamSmoke.png?v=2) | ![Violet cyan planes](screenshots/effect_VioletCyanPlanes.png?v=2) |
+
+| Pink violet starburst | Cyan teal ripples |
+|---|---|
+| ![Pink violet starburst](screenshots/effect_PinkVioletStarburst.png?v=2) | ![Cyan teal ripples](screenshots/effect_CyanTealRipples.png?v=2) |
+
+| Magenta sky blue ribbons | Golden orange plasma ring |
+|---|---|
+| ![Magenta sky blue ribbons](screenshots/effect_MagentaSkyBlueRibbons.png?v=2) | ![Golden orange plasma ring](screenshots/effect_GoldenOrangePlasmaRing.png?v=2) |
+
 ## Installer
 
 `installer/ShaunsAudioVisualizer.Installer.wixproj` is a [WiX Toolset](https://wixtoolset.org/)
