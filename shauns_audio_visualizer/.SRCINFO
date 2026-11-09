@@ -1,6 +1,6 @@
 pkgbase = shauns_audio_visualizer
 	pkgdesc = A retro audio visualizer for Linux (console renderer)
-	pkgver = 1.0.0
+	pkgver = 1.1.0
 	pkgrel = 6
 	url = https://github.com/smccloud/Shauns-Audio-Visualizer
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = shauns_audio_visualizer
 	optdepends = pipewire: PipeWire audio support
 	optdepends = pulseaudio: PulseAudio audio support
 	options = !strip
-	source = shauns_audio_visualizer-1.0.0.tar.gz::https://github.com/smccloud/Shauns-Audio-Visualizer/archive/v1.0.0.tar.gz
+	source = shauns_audio_visualizer-1.1.0.tar.gz::https://github.com/smccloud/Shauns-Audio-Visualizer/archive/v1.1.0.tar.gz
 	sha256sums = SKIP
 
 pkgname = shauns_audio_visualizer
