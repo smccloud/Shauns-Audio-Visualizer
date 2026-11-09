@@ -24,7 +24,7 @@ chmod +x "$APPDIR/usr/bin/shauns-audio-visualizer"
 cat > "$APPDIR/shauns-audio-visualizer.desktop" <<'EOF'
 [Desktop Entry]
 Type=Application
-Name=Shauns Audio Visualizer
+Name=Shaun's Audio Visualizer
 Exec=shauns-audio-visualizer
 Icon=shauns-audio-visualizer
 Categories=AudioVideo;Audio;

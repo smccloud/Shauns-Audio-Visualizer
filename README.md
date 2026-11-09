@@ -107,7 +107,7 @@ dotnet build installer/ShaunsAudioVisualizer.Installer.wixproj --configuration R
 # MSI: installer\bin\x64\Release\ShaunsAudioVisualizer.msi
 ```
 
-The MSI installs to `C:\Program Files\Audio Visualizer`, adds a Start Menu
+The MSI installs to `C:\Program Files\Shaun's Audio Visualizer`, adds a Start Menu
 shortcut, and registers an entry in **Apps & features**. It uses the standard
 WiX install-directory UI with a license page.
 

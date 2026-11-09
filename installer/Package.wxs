@@ -4,7 +4,7 @@
 
   <Package
       Id="ShaunMcCloud.ShaunsAudioVisualizer"
-      Name="Audio Visualizer"
+      Name="Shaun's Audio Visualizer"
       Manufacturer="Shaun McCloud"
       Version="1.0.0"
       UpgradeCode="B8C8D1F6-26DB-4EE4-AC54-907294B7C911"
@@ -22,11 +22,11 @@
     <Icon Id="AppIcon" SourceFile="..\ShaunsAudioVisualizer\app-icon.ico" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="INSTALLFOLDER" Name="Audio Visualizer" />
+      <Directory Id="INSTALLFOLDER" Name="Shaun's Audio Visualizer" />
     </StandardDirectory>
 
     <StandardDirectory Id="ProgramMenuFolder">
-      <Directory Id="ApplicationProgramsFolder" Name="Audio Visualizer" />
+      <Directory Id="ApplicationProgramsFolder" Name="Shaun's Audio Visualizer" />
     </StandardDirectory>
 
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
@@ -37,7 +37,7 @@
 
     <Component Id="ApplicationShortcut" Directory="ApplicationProgramsFolder" Guid="*">
       <Shortcut Id="StartMenuShortcut"
-                Name="Audio Visualizer"
+                Name="Shaun's Audio Visualizer"
                 Description="A retro audio visualizer for Windows"
                 Target="[INSTALLFOLDER]ShaunsAudioVisualizer.exe"
                 WorkingDirectory="INSTALLFOLDER"
@@ -51,7 +51,7 @@
                      KeyPath="yes" />
     </Component>
 
-    <Feature Id="ProductFeature" Title="Audio Visualizer" Level="1">
+    <Feature Id="ProductFeature" Title="Shaun's Audio Visualizer" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortcut" />
     </Feature>

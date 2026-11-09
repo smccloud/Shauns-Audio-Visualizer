@@ -25,7 +25,7 @@ public sealed class VisualizationWindow : Form
 
     public VisualizationWindow()
     {
-        Text = "Audio Visualizer";
+        Text = "Shaun's Audio Visualizer";
         ClientSize = new Size(960, 540);
         BackColor = Color.Black;
         try
@@ -80,7 +80,7 @@ public sealed class VisualizationWindow : Form
         };
 
         _effectIndex = LoadLastEffectIndex();
-        Text = $"Audio Visualizer - {_effects[_effectIndex].Name}";
+        Text = $"Shaun's Audio Visualizer - {_effects[_effectIndex].Name}";
 
         _capture = new WasapiLoopbackCapture();
 
@@ -210,13 +210,13 @@ public sealed class VisualizationWindow : Form
             case Keys.Right:
                 _effectIndex = (_effectIndex + 1) % _effects.Count;
                 _effects[_effectIndex].Reset();
-                Text = $"Audio Visualizer - {_effects[_effectIndex].Name}";
+                Text = $"Shaun's Audio Visualizer - {_effects[_effectIndex].Name}";
                 SaveLastEffectIndex();
                 break;
             case Keys.Left:
                 _effectIndex = (_effectIndex - 1 + _effects.Count) % _effects.Count;
                 _effects[_effectIndex].Reset();
-                Text = $"Audio Visualizer - {_effects[_effectIndex].Name}";
+                Text = $"Shaun's Audio Visualizer - {_effects[_effectIndex].Name}";
                 SaveLastEffectIndex();
                 break;
             case Keys.Up:
